@@ -6,13 +6,10 @@
 require_relative "board"
 
 class Player
+  attr_reader :mark
 
-  puts "Enter a number between 1 ~ 9 to place your 'x' "
-
-  if input == Kernel.gets.match(/[[:digit:]]/)
-    puts input
-  else
-    puts "Erroneous input! Try again..."
+  def initialize(mark)
+    @mark = mark
   end
 
 end

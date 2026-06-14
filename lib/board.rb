@@ -6,6 +6,14 @@ class Board
     @spaces = Array.new(9, "   ")
   end
 
+  def place_mark(index, mark)
+    @spaces[index] = mark
+  end
+
+  def read_space(index)
+    @spaces[index]
+  end
+
   def display
 
     @spaces.each_slice(3).with_index do |row, index|
