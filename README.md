@@ -6,6 +6,8 @@
 
 ## Description
 
+![Tic Tac Toe gameplay](assets/gameplay.gif)
+
 A command-line Tic Tac Toe game built as part of [The Odin Project](https://www.theodinproject.com/) Ruby curriculum. Two human players take turns marking a 3x3 board, with the board displayed between turns, until one player wins or the game ends in a draw.
 
 This project focuses on applying Object Oriented Programming principles — breaking a problem into classes, deciding what belongs to each class, and keeping information sharing between classes to a minimum.
