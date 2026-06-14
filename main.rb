@@ -19,6 +19,7 @@ require_relative "lib/board"
 require_relative "lib/player"
 require "figlet"
 
+
 # figlet = Figlet::Typesetter.new("Tic-Tac-Toe", { font: "3-d" })
 
 # puts figlet
@@ -31,7 +32,6 @@ class Game
     @p2 = Player.new(" O ")
   end
 
-  
 
   def take_turns
 
@@ -40,27 +40,36 @@ class Game
     game_over = false
 
     until game_over
+     
+      print "\e[H\e[2J" 
+      puts "Welcome to Tic-Tac-toe\n"
+
+      @board.display
       puts "Enter a number between 1 ~ 9 to place your mark "
       num = gets.chomp.to_i
       i = num - 1
       player = players[whos_turn]
 
-      if num.between?(1, 9)
-        if @board.read_space(i) == "   "
+      if num.between?(1, 9) && @board.read_space(i) == "   "
           @board.place_mark(i, player.mark)
+
+        if @board.winner?
+
           @board.display
-          puts "Next turn:"
-        elsif @board.read_space(i) != "   "
-          puts "You can't draw there"
+          puts "#{player.mark} Wins!"
+          game_over = true
+        elsif @board.full?
+          puts "That's a Draw"
+          game_over = true
+        else
+          whos_turn = ((whos_turn + 1) % players.length).to_i
         end
       else
-        puts "Erroneous input! Try again..."
+        puts "Erroneous input! Try again... <Press ENTER to continue>"
+        gets
       end
-      whos_turn = ((whos_turn + 1) % players.length).to_i
-
     end
   end
 end
 
-puts "Welcome to Tic-Tac-toe\n"
 Game.new.take_turns
